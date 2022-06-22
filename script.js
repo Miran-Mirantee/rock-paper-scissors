@@ -10,13 +10,13 @@ function randomNum() {
 
 function playRound(playerSelection, computerSelection) {
     let result = versus(playerSelection, computerSelection)
-    console.log(`computer: ${computerSelection}`);
+    // console.log(`computer: ${computerSelection}`);
     if (typeof result === "undefined")
-        return "Tied";
+        return 0;
     else if (result)
-        return `You win! ${playerSelection} beats ${computerSelection}`;
+        return 1;
     else
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
+        return -1;
 }
 
 function versus(x, y) {
@@ -48,7 +48,66 @@ function versus(x, y) {
     }
 }
 
-console.log(randomNum());
-console.log(computerPlay());
-console.log(versus("rock", "rock"));
-console.log(playRound("rock", computerPlay()));
+function game() {
+    let result = 0;
+    let player = 0;
+    let computer = 0;
+    let playerSelection;
+    let computerSelection;
+    for (let i = 0; i < 5; i++) {
+        console.log(`Round ${i+1}`);
+        while (!result) {
+            // playerSelection = prompt(`Rock Paper Scissors!`);
+            playerSelection = playerPlay();
+            computerSelection = computerPlay();
+            result = playRound(playerSelection, computerSelection);
+            if (result == 1) {
+                console.log(`   You win! ${playerSelection} beats ${computerSelection}`);
+                player++;
+            }
+                
+            else if (result == -1){
+                console.log(`   You lose! ${computerSelection} beats ${playerSelection}`);
+                computer++;
+            }
+            else
+                alert(`Tied! Draw again`);         
+        }
+        result = 0;
+    }
+
+    if (player > computer) 
+        return `Congratulattion! You are the Winner!`;
+    else 
+        return `DEFEATED`;
+}
+
+function playerPlay() {
+    let playerSelection = `nothing`;
+    while (playerSelection == `nothing`) {
+        playerSelection = prompt(`Rock Paper Scissors! (Enter nothing will randomly choose)`);
+        if (!playerSelection)
+            continue;
+        switch (playerSelection.toLowerCase()) {
+            case `rock`:
+                return `rock`;
+            case `paper`:
+                return `paper`;
+            case `scissors`:
+                return `scissors`;
+            default:
+                playerSelection = `nothing`;
+                break;
+        }
+    }
+    playerSelection = computerPlay();
+    console.log(`   You Randomed ${playerSelection}`);
+    return playerSelection;  
+}
+
+console.log(game());
+
+// console.log(randomNum());
+// console.log(computerPlay());
+// console.log(versus("rock", "rock"));
+// console.log(playRound("rock", computerPlay()));
