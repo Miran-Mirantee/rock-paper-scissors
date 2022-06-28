@@ -119,12 +119,11 @@ const display = document.querySelector('.display');
 const scoreBoard = document.querySelector('.scoreBoard');
 const btns = document.querySelectorAll('.btn');
 const score = document.createElement('div');
-const message = document.createElement('div');
 
 let player = 0;
 let computer = 0;
 score.textContent = `Player: ${player}\r\nComputer: ${computer}`;
-scoreBoard.appendChild(score)
+scoreBoard.appendChild(score);
 
 for (const btn of btns) {
     btn.addEventListener('click', (e) => {
@@ -137,13 +136,12 @@ for (const btn of btns) {
 
             player++;
             score.textContent = `Player: ${player}\r\nComputer: ${computer}`;
-            scoreBoard.appendChild(score)
+            scoreBoard.appendChild(score);
 
             if (player == 5) {
-                message.textContent = `\r\nWOOW lets go baby`;
-                scoreBoard.appendChild(message);
-                // player = 0;
-                // computer = 0;
+                alert(`WOOW lets go baby`);
+                player = 0;
+                computer = 0;
             }
         }
         else if (result == -1){
@@ -151,13 +149,12 @@ for (const btn of btns) {
 
             computer++;
             score.textContent = `Player: ${player}\r\nComputer: ${computer}`;
-            scoreBoard.appendChild(score)
+            scoreBoard.appendChild(score);
 
             if (computer == 5) {
-                message.textContent += `\r\nBOOO you suck`;
-                scoreBoard.appendChild(message);
-                // player = 0;
-                // computer = 0;
+                alert(`BOOO you suck`);
+                player = 0;
+                computer = 0;
             }
         }
         else
