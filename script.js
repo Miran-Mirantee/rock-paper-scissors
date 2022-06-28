@@ -105,10 +105,26 @@ function versus(x, y) {
 //     return playerSelection;  
 // }
 
-const display = document.querySelector('.display');
+function checkWinner(player) {
+    if (player == 5) {
+        message.textContent = `\r\nWOOW lets go baby`;
+        score.appendChild(message);
+        console.log(`this isnt working`)
+        // player = 0;
+        // computer = 0;
+    }
+}
 
+const display = document.querySelector('.display');
+const scoreBoard = document.querySelector('.scoreBoard');
 const btns = document.querySelectorAll('.btn');
-// test = btn.addEventListener('click', playRound('rock', computerPlay));
+const score = document.createElement('div');
+const message = document.createElement('div');
+
+let player = 0;
+let computer = 0;
+score.textContent = `Player: ${player}\r\nComputer: ${computer}`;
+scoreBoard.appendChild(score)
 
 for (const btn of btns) {
     btn.addEventListener('click', (e) => {
@@ -116,5 +132,36 @@ for (const btn of btns) {
         display.textContent = `You chose ${e.target.textContent}\r\nComputer chose ${computerSelection}`;
         let result = playRound(e.target.textContent, computerSelection);
         console.log(result);
+        if (result == 1) {
+            display.textContent += `\r\nYou win! ${e.target.textContent} beats ${computerSelection}`;
+
+            player++;
+            score.textContent = `Player: ${player}\r\nComputer: ${computer}`;
+            scoreBoard.appendChild(score)
+
+            if (player == 5) {
+                message.textContent = `\r\nWOOW lets go baby`;
+                scoreBoard.appendChild(message);
+                // player = 0;
+                // computer = 0;
+            }
+        }
+        else if (result == -1){
+            display.textContent += `\r\nYou lose! ${computerSelection} beats ${e.target.textContent}`;
+
+            computer++;
+            score.textContent = `Player: ${player}\r\nComputer: ${computer}`;
+            scoreBoard.appendChild(score)
+
+            if (computer == 5) {
+                message.textContent += `\r\nBOOO you suck`;
+                scoreBoard.appendChild(message);
+                // player = 0;
+                // computer = 0;
+            }
+        }
+        else
+            display.textContent += `\r\nTied! Draw again`;
     });
 }
+
