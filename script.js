@@ -48,66 +48,73 @@ function versus(x, y) {
     }
 }
 
-function game() {
-    let result = 0;
-    let player = 0;
-    let computer = 0;
-    let playerSelection;
-    let computerSelection;
-    for (let i = 0; i < 5; i++) {
-        console.log(`Round ${i+1}`);
-        while (!result) {
-            // playerSelection = prompt(`Rock Paper Scissors!`);
-            playerSelection = playerPlay();
-            computerSelection = computerPlay();
-            result = playRound(playerSelection, computerSelection);
-            if (result == 1) {
-                console.log(`   You win! ${playerSelection} beats ${computerSelection}`);
-                player++;
-            }
+// function game() {
+//     let result = 0;
+//     let player = 0;
+//     let computer = 0;
+//     let playerSelection;
+//     let computerSelection;
+//     for (let i = 0; i < 5; i++) {
+//         console.log(`Round ${i+1}`);
+//         while (!result) {
+//             // playerSelection = prompt(`Rock Paper Scissors!`);
+//             playerSelection = playerPlay();
+//             computerSelection = computerPlay();
+//             result = playRound(playerSelection, computerSelection);
+//             if (result == 1) {
+//                 console.log(`   You win! ${playerSelection} beats ${computerSelection}`);
+//                 player++;
+//             }
                 
-            else if (result == -1){
-                console.log(`   You lose! ${computerSelection} beats ${playerSelection}`);
-                computer++;
-            }
-            else
-                alert(`Tied! Draw again`);         
-        }
-        result = 0;
-    }
+//             else if (result == -1){
+//                 console.log(`   You lose! ${computerSelection} beats ${playerSelection}`);
+//                 computer++;
+//             }
+//             else
+//                 alert(`Tied! Draw again`);         
+//         }
+//         result = 0;
+//     }
 
-    if (player > computer) 
-        return `Congratulattion! You are the Winner!`;
-    else 
-        return `DEFEATED`;
+//     if (player > computer) 
+//         return `Congratulattion! You are the Winner!`;
+//     else 
+//         return `DEFEATED`;
+// }
+
+// function playerPlay() {
+//     let playerSelection = `nothing`;
+//     while (playerSelection == `nothing`) {
+//         playerSelection = prompt(`Rock Paper Scissors! (Enter nothing will randomly choose)`);
+//         if (!playerSelection)
+//             continue;
+//         switch (playerSelection.toLowerCase()) {
+//             case `rock`:
+//                 return `rock`;
+//             case `paper`:
+//                 return `paper`;
+//             case `scissors`:
+//                 return `scissors`;
+//             default:
+//                 playerSelection = `nothing`;
+//                 break;
+//         }
+//     }
+//     playerSelection = computerPlay();
+//     console.log(`   You Randomed ${playerSelection}`);
+//     return playerSelection;  
+// }
+
+const display = document.querySelector('.display');
+
+const btns = document.querySelectorAll('.btn');
+// test = btn.addEventListener('click', playRound('rock', computerPlay));
+
+for (const btn of btns) {
+    btn.addEventListener('click', (e) => {
+        let computerSelection = computerPlay();
+        display.textContent = `You chose ${e.target.textContent}\nComputer chose ${computerSelection}`;
+        let result = playRound(e.target.textContent, computerSelection);
+        console.log(result);
+    });
 }
-
-function playerPlay() {
-    let playerSelection = `nothing`;
-    while (playerSelection == `nothing`) {
-        playerSelection = prompt(`Rock Paper Scissors! (Enter nothing will randomly choose)`);
-        if (!playerSelection)
-            continue;
-        switch (playerSelection.toLowerCase()) {
-            case `rock`:
-                return `rock`;
-            case `paper`:
-                return `paper`;
-            case `scissors`:
-                return `scissors`;
-            default:
-                playerSelection = `nothing`;
-                break;
-        }
-    }
-    playerSelection = computerPlay();
-    console.log(`   You Randomed ${playerSelection}`);
-    return playerSelection;  
-}
-
-console.log(game());
-
-// console.log(randomNum());
-// console.log(computerPlay());
-// console.log(versus("rock", "rock"));
-// console.log(playRound("rock", computerPlay()));
