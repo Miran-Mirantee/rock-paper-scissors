@@ -113,7 +113,7 @@ const btns = document.querySelectorAll('.btn');
 for (const btn of btns) {
     btn.addEventListener('click', (e) => {
         let computerSelection = computerPlay();
-        display.textContent = `You chose ${e.target.textContent}\nComputer chose ${computerSelection}`;
+        display.textContent = `You chose ${e.target.textContent}\r\nComputer chose ${computerSelection}`;
         let result = playRound(e.target.textContent, computerSelection);
         console.log(result);
     });
