@@ -105,19 +105,10 @@ function versus(x, y) {
 //     return playerSelection;  
 // }
 
-function checkWinner(player) {
-    if (player == 5) {
-        message.textContent = `\r\nWOOW lets go baby`;
-        score.appendChild(message);
-        console.log(`this isnt working`)
-        // player = 0;
-        // computer = 0;
-    }
-}
-
 const display = document.querySelector('.display');
 const scoreBoard = document.querySelector('.scoreBoard');
 const btns = document.querySelectorAll('.btn');
+const reset = document.querySelector('.reset');
 const score = document.createElement('div');
 
 let player = 0;
@@ -138,10 +129,8 @@ for (const btn of btns) {
             score.textContent = `Player: ${player}\r\nComputer: ${computer}`;
             scoreBoard.appendChild(score);
 
-            if (player == 5) {
+            if (player == 5 && computer < 5) {
                 alert(`WOOW lets go baby`);
-                player = 0;
-                computer = 0;
             }
         }
         else if (result == -1){
@@ -151,14 +140,20 @@ for (const btn of btns) {
             score.textContent = `Player: ${player}\r\nComputer: ${computer}`;
             scoreBoard.appendChild(score);
 
-            if (computer == 5) {
+            if (computer == 5 && player < 5) {
                 alert(`BOOO you suck`);
-                player = 0;
-                computer = 0;
             }
         }
         else
             display.textContent += `\r\nTied! Draw again`;
     });
 }
+
+reset.addEventListener('click', () => {
+    player = 0;
+    computer = 0;
+    score.textContent = `Player: ${player}\r\nComputer: ${computer}`;
+    scoreBoard.appendChild(score);
+    display.textContent = ``;
+});
 

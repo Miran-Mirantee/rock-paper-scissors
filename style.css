@@ -1,3 +1,8 @@
 div {
     white-space: pre-line;
 }
+
+.reset {
+    background-color: red;
+    color: white;
+}
